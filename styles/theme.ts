@@ -30,7 +30,7 @@ const space = {
   8: "2.5rem", // 40px
   9: "4rem", // 64px
   10: "5rem", // 80px
-  11: "7.5rem", // 120px
+  11: "7.5rem",
 };
 
-export default { colors };
+export default { colors, fontSizes, space };

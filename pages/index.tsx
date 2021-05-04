@@ -1,6 +1,6 @@
-import Head from "next/head";
+import Head from 'next/head'
 
-import { Button } from "../components/baseButton";
+import { Button } from '../components/baseButton'
 
 export default function Home() {
   return (
@@ -17,5 +17,5 @@ export default function Home() {
         </Button>
       </main>
     </div>
-  );
+  )
 }

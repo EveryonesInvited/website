@@ -1,6 +1,7 @@
 import Head from "next/head";
 
-import { Button } from "../components/baseButton";
+import Button from "../elements/baseButton";
+import Form from "../components/form";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <Button color="primary" bg="secondary">
           Everyone's Invited
         </Button>
+        <Form />
       </main>
     </div>
   );

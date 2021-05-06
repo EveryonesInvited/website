@@ -1,6 +1,6 @@
-import "../styles/globals.css";
-import { ThemeProvider } from "styled-components";
-import theme from "../styles/theme";
+import '../styles/globals.css';
+import { ThemeProvider } from 'styled-components';
+import theme from '../styles/theme';
 
 interface MyAppProps {
   Component: React.FC;

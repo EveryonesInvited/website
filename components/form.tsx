@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SubmitButton from '../elements/submitButton';
 import TextInput from '../elements/textInput';
 import styles from './form.module.css';
-// import { createTestimonial } from ''
+import { postTestimonial } from '../services/airTableService';
 
 export default function Form() {
   const emptyForm = { testimony: '', location: '', consent: false };
@@ -20,7 +20,7 @@ export default function Form() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    // await createTestimonial(testimonial);
+    await postTestimonial(testimonial);
     setTestimonial(emptyForm);
   };
 

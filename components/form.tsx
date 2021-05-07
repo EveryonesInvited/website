@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import SubmitButton from '../elements/submitButton';
 import TextInput from '../elements/textInput';
 import styles from './form.module.css';
@@ -13,17 +13,19 @@ export default function Form() {
   };
   const [testimonial, setTestimonial] = useState(emptyForm);
 
-  const handleChange = (e: any) => {
-    const name = e.target.name;
-    const value =
-      e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const name: string = e.target.name;
+    const value: string | boolean =
+      e.target.type === 'checkbox' ? !testimonial.consent : e.target.value;
     setTestimonial(prevTestimonial => ({
       ...prevTestimonial,
       [name]: value,
     }));
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await postTestimonial(testimonial);
     setTestimonial(emptyForm);

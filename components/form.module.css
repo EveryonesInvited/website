@@ -1,0 +1,15 @@
+
+.form{
+  padding: 2rem 2rem;
+  width: 80%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.form_paragraph{
+  border: 2px red;
+}

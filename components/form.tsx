@@ -1,18 +1,20 @@
-import React, { useState } from "react";
-import SubmitButton from "../elements/submitButton";
-import BaseInput from "../elements/baseInput";
+import React, { useState } from 'react';
+import SubmitButton from '../elements/submitButton';
+import TextInput from '../elements/textInput';
+import styles from './form.module.css';
 
 // { createTestimonial }
 export default function Form() {
-  const initialState = { testimony: "", location: "", consent: "" };
+  const initialState = { testimony: '', location: '', consent: '' };
   const [event, setEvent] = useState(initialState);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
-    setEvent((prevState) => ({
-      ...prevState,
+    setEvent({
+      ...event,
       [name]: value,
-    }));
+    });
+    console.log(event);
   };
 
   const handleSubmit = (e: any) => {
@@ -23,10 +25,10 @@ export default function Form() {
   };
 
   return (
-    <div>
+    <div className={styles.form}>
       <div>
         <h1>Share Your Testimony.</h1>
-        <p>
+        <p className={styles.form_paragraph}>
           We want to hear from you. Everyone’s Invited was built on the voices
           of brave survivors who shared their testimonies with us. If you would
           like to share your experience please submit it below.
@@ -41,14 +43,14 @@ export default function Form() {
       <form className="Event__Creator" onSubmit={handleSubmit}>
         <div className="form_testimony">
           <h3>Testimony</h3>
-          <BaseInput
+          <TextInput
             className="input_testimony"
             color="primary"
             bg="secondary"
-            name="testimonial"
+            name="testimony"
             onChange={handleChange}
             value={event.testimony}
-            type="text"
+            type="textarea"
             placeholder="Insert a testimonial..."
             required
           />
@@ -57,14 +59,13 @@ export default function Form() {
         <div className="form_location">
           <h3>School/University/Organisation</h3>
           <p>Please include if possible.</p>
-          <BaseInput
+          <TextInput
             className="input_location"
             color="primary"
             bg="secondary"
             name="location"
             onChange={handleChange}
             value={event.location}
-            type="text"
             placeholder="Insert a location..."
             required
           />
@@ -87,7 +88,7 @@ export default function Form() {
           workplace/institution
         </p>
         <p>
-          *By posting your testimony & ticking you agree to our{" "}
+          *By posting your testimony & ticking you agree to our{' '}
           <a href="">Privacy Policy</a>
         </p>
         <p>

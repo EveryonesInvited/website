@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { color, ColorProps } from "styled-system";
+import styled from 'styled-components';
+import { color, ColorProps } from 'styled-system';
 
-const Input = styled.input<ColorProps>`
+const baseInput = styled.input<ColorProps>`
   font-size: 18px;
   padding: 10px;
   margin: 10px;
@@ -13,4 +13,4 @@ const Input = styled.input<ColorProps>`
   ${color}
 `;
 
-export default Input;
+export default baseInput;

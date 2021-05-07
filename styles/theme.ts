@@ -1,6 +1,6 @@
 const colors = {
   primary: 'blue',
-  secondary: 'red',
+  secondary: '#F3F3F3',
 };
 
 const fontSizes = {

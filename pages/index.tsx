@@ -13,9 +13,6 @@ export default function Home() {
       </Head>
 
       <main>
-        <Button color="primary" bg="secondary">
-          Everyone's Invited
-        </Button>
         <Form />
       </main>
     </div>

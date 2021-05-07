@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, SyntheticEvent } from 'react';
 import SubmitButton from '../elements/submitButton';
 import TextInput from '../elements/textInput';
 import styles from './form.module.css';
 import { postTestimonial } from '../services/airTableService';
+import testimonial from '../interfaces/testimonial';
 
 export default function Form() {
-  const emptyForm = { testimony: '', location: '', consent: false };
+  const emptyForm: testimonial = {
+    testimony: '',
+    location: '',
+    consent: false,
+  };
   const [testimonial, setTestimonial] = useState(emptyForm);
 
   const handleChange = (e: any) => {

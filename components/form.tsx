@@ -1,11 +1,17 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, {
+  useState,
+  ChangeEvent,
+  FormEvent,
+  FC,
+  ReactElement,
+} from 'react';
 import SubmitButton from '../elements/submitButton';
 import TextInput from '../elements/textInput';
 import styles from './form.module.css';
 import { postTestimonial } from '../services/airTableService';
 import testimonial from '../interfaces/testimonial';
 
-export default function Form() {
+const Form: FC = (): ReactElement => {
   const emptyForm: testimonial = {
     testimony: '',
     location: '',
@@ -15,7 +21,7 @@ export default function Form() {
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  ): void => {
     const name: string = e.target.name;
     const value: string | boolean =
       e.target.type === 'checkbox' ? !testimonial.consent : e.target.value;
@@ -25,7 +31,7 @@ export default function Form() {
     }));
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     await postTestimonial(testimonial);
     setTestimonial(emptyForm);
@@ -127,4 +133,6 @@ export default function Form() {
       </form>
     </div>
   );
-}
+};
+
+export default Form;

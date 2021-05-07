@@ -5,24 +5,23 @@ import styles from './form.module.css';
 // import { createTestimonial } from ''
 
 export default function Form() {
-  const initialState = { testimony: '', location: '', consent: false };
-  const [event, setEvent] = useState(initialState);
+  const emptyForm = { testimony: '', location: '', consent: false };
+  const [testimonial, setTestimonial] = useState(emptyForm);
 
   const handleChange = (e: any) => {
     const name = e.target.name;
     const value =
       e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-    setEvent(prevEvent => ({
-      ...prevEvent,
+    setTestimonial(prevTestimonial => ({
+      ...prevTestimonial,
       [name]: value,
     }));
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const { testimony, location, consent } = event;
-    // await createTestimonial(event);
-    setEvent(initialState);
+    // await createTestimonial(testimonial);
+    setTestimonial(emptyForm);
   };
 
   return (
@@ -54,7 +53,7 @@ export default function Form() {
               bg="secondary"
               name="testimony"
               onChange={e => handleChange(e)}
-              value={event.testimony}
+              value={testimonial.testimony}
               placeholder="Insert a testimonial..."
               required
             />
@@ -70,7 +69,7 @@ export default function Form() {
               bg="secondary"
               name="location"
               onChange={e => handleChange(e)}
-              value={event.location}
+              value={testimonial.location}
               placeholder="Insert a location..."
               required
             />
@@ -80,7 +79,7 @@ export default function Form() {
             <input
               name="consent"
               onChange={e => handleChange(e)}
-              checked={event.consent}
+              checked={testimonial.consent}
               type="checkbox"
               required
             ></input>

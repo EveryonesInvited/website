@@ -1,7 +1,7 @@
-import Head from "next/head";
+import Head from 'next/head';
 
-import Button from "../elements/baseButton";
-import Form from "../components/form";
+import Button from '../elements/baseButton';
+import Form from '../components/form';
 
 export default function Home() {
   return (

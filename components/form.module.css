@@ -1,15 +1,40 @@
 
 .form{
-  padding: 2rem 2rem;
+  margin: 2rem 2rem;
   width: 80%;
-  text-align: center;
+}
+
+.form_invitation{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
-.form_paragraph{
-  border: 2px red;
+.input_submission{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.event__creator{
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input_location{
+}
+
+.input_testimony{
+}
+
+.input_consent{
+  display: flex;
+  flex-direction: row;
+}
+
+.submit{
 }

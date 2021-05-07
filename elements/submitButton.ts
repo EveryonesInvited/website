@@ -7,8 +7,10 @@ const SubmitButton = styled(baseButton)<ColorProps>`
   margin: 1em;
   padding: 0.25em 1em;
   border-radius: 3px;
-
-  width: 100px;
+  border: none;
+  width: 30%;
+  height: 50px;
+  resize: vertical;
   ${color}
 `;
 

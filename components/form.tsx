@@ -11,7 +11,6 @@ import P from './elements/P';
 import SubmitButton from './elements/SubmitButton';
 import FormElement from './elements/FormElement';
 import TextArea from './elements/TextArea';
-import { postTestimonial } from '../services/airTableService';
 import Testimonial from '../interfaces/testimonial';
 
 const Form: FC = () => {
@@ -49,10 +48,22 @@ const Form: FC = () => {
     e.preventDefault();
     setHasError(false);
     try {
-      await postTestimonial({
-        testimony,
-        location,
-        consent,
+      await fetch(`/api/airTableService`, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache',
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json, text/plain, */*',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify({
+          testimony,
+          location,
+          consent,
+        }), // body data type must match "Content-Type" header
       });
       setTestimony(initialState.testimony);
       setLocation(initialState.location);

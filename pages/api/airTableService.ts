@@ -1,81 +1,27 @@
 import Airtable from 'airtable';
-import testimonial from '../../interfaces/testimonial';
-import { NextApiRequest, NextApiResponse } from "next";
+import testimonial from '../../types/testimonial';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const baseKey: string = process.env.AIRTABLE_API_BASE || '';
+const apiKey: string = process.env.AIRTABLE_API_KEY || '';
 
-  if ( req.method === "POST" ) {
+const base = new Airtable({ apiKey: apiKey }).base(baseKey);
 
-    console.log("RECEIVED REQUEST")
-    console.log("REQUEST OBJECT: ", req.body)
-    const testimonial: testimonial = req.body;
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method !== 'POST') {
+    return res.send(405); // Method Not Allowed
+  }
 
-    const baseKey: string = process.env.AIRTABLE_API_BASE || '';
-    const apiKey: string = process.env.AIRTABLE_API_KEY || '';
-    console.log('baseKey: ', baseKey);
-    console.log('apiKey: ', apiKey); 
+  const testimonial: testimonial = req.body;
 
-    const base = new Airtable({apiKey: apiKey}).base(baseKey);
-
-    return new Promise((resolve, reject) => {
-      base('Testimonies').create([
-        {
-          "fields": {
-            // "Submitted On": Date.now(),
-            "Message": testimonial.testimony,
-            "School": testimonial.location
-          }
-        },
-      ], function(err, records) {
-        if (err) {
-          console.error(err);
-          return reject(err);
-        }
-        records?.forEach(function (record) {
-          console.log(record.getId());
-          resolve(res.status(200).json(record.getId()))
-        });
-      });
+  try {
+    const data = await base('Testimonies').create({
+      Message: testimonial.message,
+      School: testimonial.location,
     });
 
-  } else {
-    res.status(405).end() //Method Not Allowed
+    res.status(200).send(data);
+  } catch (e) {
+    res.send(403);
   }
-}
-
-
-
-// const postTestimonial = function (testimonial: testimonial): Promise<any>  {
-//   console.log("postTestimonial triggered with: ", testimonial);
-
-//   const baseKey: string = process.env.AIRTABLE_API_BASE || '';
-//   const apiKey: string = process.env.AIRTABLE_API_KEY || '';
-
-//   console.log('baseKey: ', baseKey);
-//   console.log('apiKey: ', apiKey); 
-
-//   const base = new Airtable({apiKey: apiKey}).base(baseKey);
-  
-//   return new Promise((resolve, reject) => {
-//     base('Testimonies').create([
-//       {
-//         "fields": {
-//           // "Submitted On": Date.now(),
-//           "Message": testimonial.testimony,
-//           "School": testimonial.location
-//         }
-//       },
-//     ], function(err, records) {
-//       if (err) {
-//         console.error(err);
-//         return reject(err);
-//       }
-//       records?.forEach(function (record) {
-//         console.log(record.getId());
-//         resolve(record.getId())
-//       });
-//     });
-//   });
-// };
-
-// export { postTestimonial };
+};

@@ -33,4 +33,4 @@ const space = {
   11: '7.5rem', // 120px
 };
 
-export default { colors };
+export default { colors, fontSizes, space };

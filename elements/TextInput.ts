@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import baseInput from './BaseInput';
 import { color, ColorProps } from 'styled-system';
 
 const TextInput = styled.textarea<ColorProps>`

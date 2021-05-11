@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  ChangeEvent,
-  FormEvent,
-  FC,
-  ReactElement,
-} from 'react';
+import React, { useState, ChangeEvent, FormEvent, FC } from 'react';
 import styled from 'styled-components';
 
 import SubmitButton from '../elements/SubmitButton';
@@ -129,15 +123,7 @@ const Form: FC = () => {
           </p>
         </div>
         <br />
-        <SubmitButton
-          className={styles.submit}
-          value="Submit"
-          type="submit"
-          color="primary"
-          bg="secondary"
-        >
-          Submit
-        </SubmitButton>
+        <SubmitButton label="Submit" />
       </form>
     </FormContainer>
   );

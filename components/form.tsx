@@ -5,13 +5,20 @@ import React, {
   FC,
   ReactElement,
 } from 'react';
-import SubmitButton from '../elements/submitButton';
-import TextInput from '../elements/textInput';
+import styled from 'styled-components';
+
+import SubmitButton from '../elements/SubmitButton';
+import TextInput from '../elements/TextInput';
 import styles from './form.module.css';
 import { postTestimonial } from '../services/airTableService';
 import testimonial from '../interfaces/testimonial';
 
-const Form: FC = (): ReactElement => {
+const FormContainer = styled.div`
+  margin: 2rem 2rem;
+  width: 80%;
+`;
+
+const Form: FC = () => {
   const emptyForm: testimonial = {
     testimony: '',
     location: '',
@@ -25,6 +32,7 @@ const Form: FC = (): ReactElement => {
     const name: string = e.target.name;
     const value: string | boolean =
       e.target.type === 'checkbox' ? !testimonial.consent : e.target.value;
+
     setTestimonial(prevTestimonial => ({
       ...prevTestimonial,
       [name]: value,
@@ -38,7 +46,7 @@ const Form: FC = (): ReactElement => {
   };
 
   return (
-    <div className={styles.form}>
+    <FormContainer>
       <div className={styles.form_invitation}>
         <h1>Share Your Testimony.</h1>
         <p>
@@ -131,7 +139,7 @@ const Form: FC = (): ReactElement => {
           Submit
         </SubmitButton>
       </form>
-    </div>
+    </FormContainer>
   );
 };
 

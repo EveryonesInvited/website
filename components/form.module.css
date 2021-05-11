@@ -1,9 +1,3 @@
-
-.form{
-  margin: 2rem 2rem;
-  width: 80%;
-}
-
 .form_invitation{
   display: flex;
   flex-direction: column;
@@ -25,16 +19,7 @@
   box-sizing: border-box;
 }
 
-.input_location{
-}
-
-.input_testimony{
-}
-
 .input_consent{
   display: flex;
   flex-direction: row;
-}
-
-.submit{
 }

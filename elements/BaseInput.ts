@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { color, ColorProps } from 'styled-system';
 
-const baseInput = styled.input<ColorProps>`
+const BaseInput = styled.input<ColorProps>`
   font-size: 18px;
   padding: 10px;
   margin: 10px;
@@ -12,4 +12,4 @@ const baseInput = styled.input<ColorProps>`
   ${color}
 `;
 
-export default baseInput;
+export default BaseInput;

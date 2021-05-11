@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import baseInput from './baseInput';
+import baseInput from './BaseInput';
 import { color, ColorProps } from 'styled-system';
 
-const textInput = styled.textarea<ColorProps>`
+const TextInput = styled.textarea<ColorProps>`
   font-size: 1em;
   padding: 0.25em 1em;
   border-radius: 3px;
@@ -17,7 +17,7 @@ const textInput = styled.textarea<ColorProps>`
   &:focus {
     outline: none;
   }
-  ${color}
+  ${color};
 `;
 
-export default textInput;
+export default TextInput;

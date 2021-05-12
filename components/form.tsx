@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent, FC } from 'react';
 import styled from 'styled-components';
-
+import Heading1 from '../elements/Heading1';
 import SubmitButton from '../elements/SubmitButton';
 import TextInput from '../elements/TextInput';
 import styles from './form.module.css';
@@ -16,8 +16,6 @@ const FormContainer = styled.form`
   align-items: center;
   box-sizing: border-box;
 `;
-
-const Headings = styled.form``;
 
 const Form: FC = () => {
   const emptyForm: testimonial = {
@@ -48,7 +46,7 @@ const Form: FC = () => {
 
   return (
     <FormContainer onSubmit={handleSubmit}>
-      <h1>Share Your Testimony.</h1>
+      <Heading1 label="Share Your Testimony."></Heading1>
       <p>
         We want to hear from you. Everyone’s Invited was built on the voices of
         brave survivors who shared their testimonies with us. If you would like

@@ -5,19 +5,23 @@ import Heading2 from '../elements/Heading3';
 import Heading3 from '../elements/Heading3';
 import Paragraph1 from '../elements/Paragraph1';
 import SubmitButton from '../elements/SubmitButton';
+import FormElement from '../elements/FormElement';
 import TextInput from '../elements/TextInput';
 import { postTestimonial } from '../services/airTableService';
 import testimonial from '../interfaces/testimonial';
 
-const FormContainer = styled.form`
-  margin: 2rem 2rem;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-`;
+// const FormElement = styled.form`
+//   margin: 2rem 2rem;
+//   width: 80%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   box-sizing: border-box;
+//   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+//     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+//   border-radius: 1rem;
+// `;
 
 const Form: FC = () => {
   const emptyForm: testimonial = {
@@ -47,7 +51,7 @@ const Form: FC = () => {
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
+    <FormElement m={7} py={1} px={6} onSubmit={handleSubmit}>
       <Heading1 label="Share Your Testimony."></Heading1>
       <Paragraph1>
         We want to hear from you. Everyone’s Invited was built on the voices of
@@ -109,7 +113,7 @@ const Form: FC = () => {
         reporting, through an institution or via the police.
       </Paragraph1>
       <SubmitButton label="Submit" />
-    </FormContainer>
+    </FormElement>
   );
 };
 

@@ -1,9 +1,10 @@
 import Airtable from 'airtable';
 import testimonial from '../../types/testimonial';
 import { NextApiRequest, NextApiResponse } from 'next';
+import moment from 'moment';
 
-const baseKey: string = process.env.AIRTABLE_API_BASE || '';
-const apiKey: string = process.env.AIRTABLE_API_KEY || '';
+const baseKey: string = process.env.AIRTABLE_ID || '';
+const apiKey: string = process.env.AIRTABLE_KEY || '';
 
 const base = new Airtable({ apiKey: apiKey }).base(baseKey);
 
@@ -16,6 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const data = await base('Testimonies').create({
+      'Submitted On': moment().toISOString(),
       Message: testimonial.message,
       School: testimonial.location,
     });

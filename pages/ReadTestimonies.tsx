@@ -1,12 +1,65 @@
 import Head from 'next/head';
 
-import Masonry from './Masonry';
-import Card from './Card';
+import Masonry from '../elements/Masonry';
+import Card from '../elements/Card';
+import Airtable from 'airtable';
+// import testimonial from '../interfaces/testimonial';
 
-// TODO: Need to fetch `posts` (by calling some API endpoint)
-//       before this page can be pre-rendered.
+export async function getStaticProps() {
+  const baseKey: string = process.env.AIRTABLE_ID || '';
+  const apiKey: string = process.env.AIRTABLE_KEY || '';
+  const base = new Airtable({ apiKey: apiKey }).base(baseKey);
 
-export default function Testimonies() {
+  function getTestimonials() {
+    const testimonies: Array<T> = [];
+    return new Promise((resolve, reject) => {
+      base('Testimonies')
+        .select({
+          maxRecords: 50,
+          view: 'Grid view',
+          fields: ['Submitted On', 'Message', 'School'],
+          filterByFormula: `AND(Approved)`,
+        })
+        .eachPage(
+          function page(records, fetchNextPage) {
+            records.forEach(function (record) {
+              // console.log('Retrieved', record.get('Message'));
+              const testimonyId = record.getId();
+              const date = record.get('Submitted On');
+              console.log(date);
+              const message = record.get('Message');
+              // console.log(message)
+              // const location = record.get('School');
+              // console.log(location);
+              // if (!message || !location) return;
+              testimonies.push({
+                testimonyId,
+                date,
+                message,
+                // location,
+              });
+            });
+            console.log(testimonies);
+            fetchNextPage();
+          },
+          function done(err) {
+            if (err) {
+              reject(err);
+            }
+            return resolve(testimonies);
+          }
+        );
+    });
+  }
+
+  return {
+    props: {
+      testimonies: await getTestimonials(),
+    },
+  };
+}
+
+export default function Testimonies(props) {
   return (
     <div>
       <Head>
@@ -15,12 +68,24 @@ export default function Testimonies() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {/* <Masonry columns={3}>
-          {testimonies.map(testimony => (
-            <Card key={testimony} title={testimony.Location} comment={testimony.Testimony}/>
+        <h1>Testimonials</h1>
+        <Masonry columns={2}>
+          {props.testimonies.map(testimony => (
+            <Card
+              key={testimony.testimonyId}
+              date={testimony.date}
+              message={testimony.message}
+            />
           ))}
-        </Masonry> */}
+        </Masonry>
       </main>
     </div>
   );
 }
+
+// {/* <div>
+//   {props.testimonies.map(testimony => (
+//     <p key={testimony.testimonyId}> {testimony.message} </p>
+//     // <Card key={testimony.testimonyId} date={testimony.date} message={testimony.message}/>
+//   ))}
+// </div> */}

@@ -1,9 +1,11 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import Button from '../elements/baseButton';
 import Form from '../components/form';
 
 export default function Home() {
+  const router = useRouter();
   return (
     <div>
       <Head>
@@ -13,6 +15,9 @@ export default function Home() {
       </Head>
 
       <main>
+        <button type="button" onClick={() => router.push('/ReadTestimonies')}>
+          Click me
+        </button>
         <Form />
       </main>
     </div>

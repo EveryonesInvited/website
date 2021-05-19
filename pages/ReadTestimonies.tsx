@@ -1,5 +1,8 @@
 import Head from 'next/head';
 
+import Masonry from './Masonry';
+import Card from './Card';
+
 // TODO: Need to fetch `posts` (by calling some API endpoint)
 //       before this page can be pre-rendered.
 
@@ -12,11 +15,11 @@ export default function Testimonies() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <ul>
-          {posts.map(post => (
-            <li>{post.title}</li>
+        {/* <Masonry columns={3}>
+          {testimonies.map(testimony => (
+            <Card key={testimony} title={testimony.Location} comment={testimony.Testimony}/>
           ))}
-        </ul>
+        </Masonry> */}
       </main>
     </div>
   );

@@ -64,7 +64,7 @@ const Form: FC = () => {
 
   return (
     <FormElement m={7} py={1} px={6} onSubmit={handleSubmit}>
-      <H1>"Share Your Testimony."</H1>
+      <H1>Share Your Testimony.</H1>
       <P>
         We want to hear from you. Everyone’s Invited was built on the voices of
         brave survivors who shared their testimonies with us. If you would like

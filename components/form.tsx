@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent, FC } from 'react';
+import React, { useState, ChangeEvent, FormEvent, FC, useCallback } from 'react';
 import H1 from '../elements/H1';
 import H3 from '../elements/H3';
 import P from '../elements/P';
@@ -6,37 +6,47 @@ import SubmitButton from '../elements/SubmitButton';
 import FormElement from '../elements/FormElement';
 import TextInput from '../elements/TextInput';
 import { postTestimonial } from '../services/airTableService';
-import testimonial from '../interfaces/testimonial';
+import Testimonial from '../interfaces/testimonial';
 
 const Form: FC = () => {
-  const emptyForm: testimonial = {
+  const initialState: Testimonial = {
     testimony: '',
     location: '',
     consent: false,
   };
-  const [testimonial, setTestimonial] = useState(emptyForm);
+
+  const [testimony, setTestimony] = useState(initialState.testimony);
+  const [location, setLocation] = useState(initialState.location);
+  const [consent, setConsent] = useState(initialState.consent);
+
+
   const [hasError, setHasError] = useState(false);
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void => {
-    const name: string = e.target.name;
-    const value: string | boolean =
-      e.target.type === 'checkbox' ? !testimonial.consent : e.target.value;
+  const handleTestimonyChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setTestimony(e.target.value)
+  }, [])
 
-    setTestimonial(prevTestimonial => ({
-      ...prevTestimonial,
-      [name]: value,
-    }));
-  };
+  const handleLocationChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setLocation(e.target.value)
+  }, [])
+  
+  const handleConsentChange = useCallback(() => {
+    setConsent(!consent)
+  }, [consent])
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setHasError(false)
     try {
-      await postTestimonial(testimonial);
-      setTestimonial(emptyForm);
-      
+      await postTestimonial({
+        testimony,
+        location,
+        consent
+      });
+      setTestimony(initialState.testimony)
+      setLocation(initialState.location)
+      setConsent(initialState.consent)
+
     } catch (e) {
       setHasError(true)
     }
@@ -61,8 +71,8 @@ const Form: FC = () => {
         color="primary"
         bg="secondary"
         name="testimony"
-        onChange={e => handleChange(e)}
-        value={testimonial.testimony}
+        onChange={handleTestimonyChange}
+        value={testimony}
         placeholder="Insert a testimonial..."
         required
       />
@@ -71,18 +81,18 @@ const Form: FC = () => {
         color="primary"
         bg="secondary"
         name="location"
-        onChange={e => handleChange(e)}
-        value={testimonial.location}
+        onChange={handleLocationChange}
+        value={location}
         placeholder="Insert a location..."
         required
       />
       <input
         name="consent"
-        onChange={e => handleChange(e)}
-        checked={testimonial.consent}
+        onChange={handleConsentChange}
+        checked={consent}
         type="checkbox"
         required
-      ></input>
+      />
       <P>"I have read and agree with the consent details</P>
       <P>
         *Organisation covers any business, government, religious or military

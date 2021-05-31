@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent, FC } from 'react';
-import Heading1 from '../elements/Heading1';
-import Heading3 from '../elements/Heading3';
-import Paragraph1 from '../elements/Paragraph1';
+import H1 from '../elements/H1';
+import H3 from '../elements/H3';
+import P from '../elements/P';
 import SubmitButton from '../elements/SubmitButton';
 import FormElement from '../elements/FormElement';
 import TextInput from '../elements/TextInput';
@@ -44,19 +44,19 @@ const Form: FC = () => {
 
   return (
     <FormElement m={7} py={1} px={6} onSubmit={handleSubmit}>
-      <Heading1 label="Share Your Testimony."></Heading1>
-      <Paragraph1>
+      <H1 label="Share Your Testimony."></H1>
+      <P>
         We want to hear from you. Everyone’s Invited was built on the voices of
         brave survivors who shared their testimonies with us. If you would like
         to share your experience please submit it below.
-      </Paragraph1>
-      <Heading3 label="** This is an anonymous submission form **"></Heading3>
-      <Paragraph1>
+      </P>
+      <H3 label="** This is an anonymous submission form **"></H3>
+      <P>
         Please do not include names. If names or specific details are included
         that compromise the anonymity of the testimony, your testimony will not
         be posted.
-      </Paragraph1>
-      <Heading3 label="Testimony"></Heading3>
+      </P>
+      <H3 label="Testimony"></H3>
       <TextInput
         color="primary"
         bg="secondary"
@@ -66,7 +66,7 @@ const Form: FC = () => {
         placeholder="Insert a testimonial..."
         required
       />
-      <Heading3 label="School / University / Organisation (Please include if possible)"></Heading3>
+      <H3 label="School / University / Organisation (Please include if possible)"></H3>
       <TextInput
         color="primary"
         bg="secondary"
@@ -83,28 +83,28 @@ const Form: FC = () => {
         type="checkbox"
         required
       ></input>
-      <Paragraph1>"I have read and agree with the consent details</Paragraph1>
-      <Paragraph1>
+      <P>"I have read and agree with the consent details</P>
+      <P>
         *Organisation covers any business, government, religious or military
         workplace/institution
-      </Paragraph1>
-      <Paragraph1>
+      </P>
+      <P>
         *By posting your testimony & ticking you agree to our{' '}
         <a href="">Privacy Policy</a>
-      </Paragraph1>
-      <Paragraph1>
+      </P>
+      <P>
         - You also agree to the conditions of anonymity of yourself and all
         persons mentioned - this pertains also to not copying testimonies on the
         site with the intention of reposting elsewhere where previously
         anonymous details may be revealed.
-      </Paragraph1>
-      <Paragraph1>
+      </P>
+      <P>
         - Please submit responsibly: this is an anonymous outlet only and
         Everyone's Invited does not condone the naming of any involved.
         Everyone’s Invited is not a substitute for a legitimate form of
         reporting, through an institution or via the police.
-      </Paragraph1>
-      {hasError && <Paragraph1 color="cabaret">There was an error when submitting your testimony, we've been notified and are working on it!</Paragraph1>}
+      </P>
+      {hasError && <P color="cabaret">There was an error when submitting your testimony, we've been notified and are working on it!</P>}
       <SubmitButton label="Submit" />
     </FormElement>
   );

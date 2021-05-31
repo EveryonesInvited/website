@@ -5,13 +5,14 @@ interface HeadingProps {
   label: string;
 }
 
-const Heading1: FC<HeadingProps> = ({ label }) => {
+const H2: FC<HeadingProps> = ({ label }) => {
   return (
     <BaseHeading
       color="primary"
-      fontSize={[4, 6, 7, 8]}
-      m={4}
-      py={1}
+      as="h2"
+      fontSize={[2, 3, 4, 5]}
+      m={2}
+      py={2}
       px={4}
     >
       {label}
@@ -19,4 +20,4 @@ const Heading1: FC<HeadingProps> = ({ label }) => {
   );
 };
 
-export default Heading1;
+export default H2;

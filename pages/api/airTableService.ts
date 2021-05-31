@@ -10,7 +10,7 @@ const base = new Airtable({ apiKey: apiKey }).base(baseKey);
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'POST') {
-    return res.send(405); // Method Not Allowed
+    return res.send(405);
   }
 
   const testimonial: testimonial = req.body;
@@ -24,6 +24,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.status(200).send(data);
   } catch (e) {
+    console.error(e);
+
     res.send(403);
   }
 };

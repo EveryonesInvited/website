@@ -1,10 +1,16 @@
-import React, { useState, ChangeEvent, FormEvent, FC, useCallback } from 'react';
+import React, {
+  useState,
+  ChangeEvent,
+  FormEvent,
+  FC,
+  useCallback,
+} from 'react';
 import H1 from '../elements/H1';
 import H3 from '../elements/H3';
 import P from '../elements/P';
 import SubmitButton from '../elements/SubmitButton';
 import FormElement from '../elements/FormElement';
-import TextInput from '../elements/TextInput';
+import TextArea from '../elements/TextArea';
 import { postTestimonial } from '../services/airTableService';
 import Testimonial from '../interfaces/testimonial';
 
@@ -19,36 +25,40 @@ const Form: FC = () => {
   const [location, setLocation] = useState(initialState.location);
   const [consent, setConsent] = useState(initialState.consent);
 
-
   const [hasError, setHasError] = useState(false);
 
-  const handleTestimonyChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setTestimony(e.target.value)
-  }, [])
+  const handleTestimonyChange = useCallback(
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
+      setTestimony(e.target.value);
+    },
+    []
+  );
 
-  const handleLocationChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setLocation(e.target.value)
-  }, [])
-  
+  const handleLocationChange = useCallback(
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
+      setLocation(e.target.value);
+    },
+    []
+  );
+
   const handleConsentChange = useCallback(() => {
-    setConsent(!consent)
-  }, [consent])
+    setConsent(!consent);
+  }, [consent]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    setHasError(false)
+    setHasError(false);
     try {
       await postTestimonial({
         testimony,
         location,
-        consent
+        consent,
       });
-      setTestimony(initialState.testimony)
-      setLocation(initialState.location)
-      setConsent(initialState.consent)
-
+      setTestimony(initialState.testimony);
+      setLocation(initialState.location);
+      setConsent(initialState.consent);
     } catch (e) {
-      setHasError(true)
+      setHasError(true);
     }
   };
 
@@ -67,7 +77,7 @@ const Form: FC = () => {
         be posted.
       </P>
       <H3>Testimony</H3>
-      <TextInput
+      <TextArea
         color="primary"
         bg="secondary"
         name="testimony"
@@ -77,7 +87,7 @@ const Form: FC = () => {
         required
       />
       <H3>School / University / Organisation (Please include if possible)</H3>
-      <TextInput
+      <TextArea
         color="primary"
         bg="secondary"
         name="location"
@@ -93,7 +103,7 @@ const Form: FC = () => {
         type="checkbox"
         required
       />
-      <P>"I have read and agree with the consent details</P>
+      <P>I have read and agree with the consent details</P>
       <P>
         *Organisation covers any business, government, religious or military
         workplace/institution
@@ -114,7 +124,12 @@ const Form: FC = () => {
         Everyone’s Invited is not a substitute for a legitimate form of
         reporting, through an institution or via the police.
       </P>
-      {hasError && <P color="cabaret">There was an error when submitting your testimony, we've been notified and are working on it!</P>}
+      {hasError && (
+        <P color="cabaret">
+          There was an error when submitting your testimony, we've been notified
+          and are working on it!
+        </P>
+      )}
       <SubmitButton label="Submit" />
     </FormElement>
   );

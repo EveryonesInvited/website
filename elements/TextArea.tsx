@@ -20,7 +20,6 @@ const BaseTextArea = styled.textarea<ColorProps>`
   &:focus {
     outline: none;
   }
-  ${props => props.theme.fontSizes[2]}
   ${color};
   ${typography};
   ${space};

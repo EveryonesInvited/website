@@ -44,19 +44,19 @@ const Form: FC = () => {
 
   return (
     <FormElement m={7} py={1} px={6} onSubmit={handleSubmit}>
-      <H1 label="Share Your Testimony."></H1>
+      <H1>"Share Your Testimony."</H1>
       <P>
         We want to hear from you. Everyone’s Invited was built on the voices of
         brave survivors who shared their testimonies with us. If you would like
         to share your experience please submit it below.
       </P>
-      <H3 label="** This is an anonymous submission form **"></H3>
+      <H3>** This is an anonymous submission form **"</H3>
       <P>
         Please do not include names. If names or specific details are included
         that compromise the anonymity of the testimony, your testimony will not
         be posted.
       </P>
-      <H3 label="Testimony"></H3>
+      <H3>Testimony</H3>
       <TextInput
         color="primary"
         bg="secondary"
@@ -66,7 +66,7 @@ const Form: FC = () => {
         placeholder="Insert a testimonial..."
         required
       />
-      <H3 label="School / University / Organisation (Please include if possible)"></H3>
+      <H3>School / University / Organisation (Please include if possible)</H3>
       <TextInput
         color="primary"
         bg="secondary"

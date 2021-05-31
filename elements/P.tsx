@@ -5,7 +5,7 @@ import BaseParagraph from './BaseParagraph';
 interface ParagraphProps {
   color?: Color
 }
-const Paragraph1: FC<ParagraphProps> = ({ children, color = "primary" }) => {
+const P: FC<ParagraphProps> = ({ children, color = "primary" }) => {
   return (
     <BaseParagraph
       color={color}
@@ -19,5 +19,5 @@ const Paragraph1: FC<ParagraphProps> = ({ children, color = "primary" }) => {
   );
 };
 
-export default Paragraph1;
+export default P;
 

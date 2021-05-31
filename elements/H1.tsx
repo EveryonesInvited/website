@@ -1,11 +1,7 @@
 import { FC } from 'react';
 import BaseHeading from './BaseHeading';
 
-interface HeadingProps {
-  label: string;
-}
-
-const H1: FC<HeadingProps> = ({ label }) => {
+const H1: FC = ({ children }) => {
   return (
     <BaseHeading
       color="primary"
@@ -14,7 +10,7 @@ const H1: FC<HeadingProps> = ({ label }) => {
       py={1}
       px={4}
     >
-      {label}
+      {children}
     </BaseHeading>
   );
 };

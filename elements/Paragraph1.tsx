@@ -1,11 +1,7 @@
 import { FC } from 'react';
 import BaseParagraph from './BaseParagraph';
 
-interface ParagraphProps {
-  // label: string;
-}
-
-const Paragraph1: FC<ParagraphProps> = ({ children }) => {
+const Paragraph1: FC = ({ children }) => {
   return (
     <BaseParagraph
       color="primary"
@@ -21,4 +17,3 @@ const Paragraph1: FC<ParagraphProps> = ({ children }) => {
 
 export default Paragraph1;
 
-//       {label}

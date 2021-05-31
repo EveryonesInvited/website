@@ -13,7 +13,6 @@ const Heading3: FC<HeadingProps> = ({ label }) => {
       m={2}
       py={2}
       px={4}
-      // height="50px"
     >
       {label}
     </BaseHeading>

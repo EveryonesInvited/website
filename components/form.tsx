@@ -10,19 +10,6 @@ import TextInput from '../elements/TextInput';
 import { postTestimonial } from '../services/airTableService';
 import testimonial from '../interfaces/testimonial';
 
-// const FormElement = styled.form`
-//   margin: 2rem 2rem;
-//   width: 80%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   box-sizing: border-box;
-//   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-//     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-//   border-radius: 1rem;
-// `;
-
 const Form: FC = () => {
   const emptyForm: testimonial = {
     testimony: '',

@@ -12,7 +12,7 @@ import {
   layout,
   border,
 } from 'styled-system';
-import { Color } from '../styles/theme';
+import { Color } from '../../styles/theme';
 
 const BaseParagraph = styled.p<
   ColorProps & TypographyProps & SpaceProps & LayoutProps & BorderProps

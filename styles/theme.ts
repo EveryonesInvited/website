@@ -1,4 +1,3 @@
-
 export type Color = keyof typeof colors;
 const colors = {
   primary: '#000',

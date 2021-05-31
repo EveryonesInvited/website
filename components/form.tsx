@@ -5,12 +5,12 @@ import React, {
   FC,
   useCallback,
 } from 'react';
-import H1 from '../elements/H1';
-import H3 from '../elements/H3';
-import P from '../elements/P';
-import SubmitButton from '../elements/SubmitButton';
-import FormElement from '../elements/FormElement';
-import TextArea from '../elements/TextArea';
+import H1 from './elements/H1';
+import H3 from './elements/H3';
+import P from './elements/P';
+import SubmitButton from './elements/SubmitButton';
+import FormElement from './elements/FormElement';
+import TextArea from './elements/TextArea';
 import { postTestimonial } from '../services/airTableService';
 import Testimonial from '../interfaces/testimonial';
 

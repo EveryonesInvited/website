@@ -1,7 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent, FC } from 'react';
-import styled from 'styled-components';
 import Heading1 from '../elements/Heading1';
-import Heading2 from '../elements/Heading3';
 import Heading3 from '../elements/Heading3';
 import Paragraph1 from '../elements/Paragraph1';
 import SubmitButton from '../elements/SubmitButton';
@@ -17,6 +15,7 @@ const Form: FC = () => {
     consent: false,
   };
   const [testimonial, setTestimonial] = useState(emptyForm);
+  const [hasError, setHasError] = useState(false);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,8 +32,14 @@ const Form: FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    await postTestimonial(testimonial);
-    setTestimonial(emptyForm);
+    setHasError(false)
+    try {
+      await postTestimonial(testimonial);
+      setTestimonial(emptyForm);
+      
+    } catch (e) {
+      setHasError(true)
+    }
   };
 
   return (
@@ -99,6 +104,7 @@ const Form: FC = () => {
         Everyone’s Invited is not a substitute for a legitimate form of
         reporting, through an institution or via the police.
       </Paragraph1>
+      {hasError && <Paragraph1 color="cabaret">There was an error when submitting your testimony, we've been notified and are working on it!</Paragraph1>}
       <SubmitButton label="Submit" />
     </FormElement>
   );

@@ -1,6 +1,9 @@
+
+export type Color = keyof typeof colors;
 const colors = {
   primary: 'black',
   secondary: '#F3F3F3',
+  cabaret: '#D74259',
 };
 
 const fontSizes = {

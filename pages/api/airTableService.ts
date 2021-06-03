@@ -1,5 +1,5 @@
 import Airtable from 'airtable';
-import testimonial from '../../types/testimonial';
+import testimonial from '../../types/Testimonial';
 import { NextApiRequest, NextApiResponse } from 'next';
 import moment from 'moment';
 
@@ -18,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const data = await base('Testimonies').create({
       'Submitted On': moment().toISOString(),
-      Message: testimonial.message,
+      Message: testimonial.testimony,
       School: testimonial.location,
     });
 
